@@ -144,7 +144,7 @@ tage = {
   source = "./modules/secret-manager"
 
   name_prefix = var.cluster_name
-
+  #hh
   create_db_secret = var.enable_db_secret
   creat_api_secret = var.enable_api_secret
   create_app_config_secret = var.enable_app_config_secret
