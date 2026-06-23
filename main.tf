@@ -21,7 +21,6 @@ source = "./modules/vpc"
   public_subnets  = var.public_subnets
 
   enable_nat_gateway = true
-  enable_vpn_gateway = true
 
 
   #tags for eks
@@ -64,7 +63,7 @@ module "eks" {
   source  = "./modules/eks"
 
  cluster_name  = var.cluster_name
-  kubernetes_version = var.kubernates_version
+ kubernetes_version = var.kubernates_version
 
 
   vpc_id     = module.vpc.vpc.id
@@ -78,7 +77,7 @@ module "eks" {
 
 endpoint_public_access = true
 endpoint_private_access = true
-public_access_cidr = ["0.0.0.0./0"]
+public_access_cidrs = ["0.0.0.0/0"]
 
 
 enable_irsa = true
@@ -98,7 +97,7 @@ node_groups = {
 labels = {
   role = "general"
 }
-tage = {
+tags = {
   NodeGroup = "general"
 }
   }
@@ -117,16 +116,14 @@ tage = {
     }
 
     taints = [{
-      key = "spot
-      value ="true"
-     effect = "NO_SCHEDULE"
+      key = "spot"
+      value = "true"
+      effect = "NO_SCHEDULE"
     }]
     tags = {
       NodeGroup = "spot"
     }
   }
-
-      }
 }
 
 
@@ -134,7 +131,7 @@ tage = {
   tags = {
     Environment = var.environment
     Terraform   = "true"
-    Project = "eks-prod
+    Project = "eks-prod"
   }
 
   depends_on = [module.iam]
